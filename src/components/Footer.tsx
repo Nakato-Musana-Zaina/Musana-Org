@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MapPin, Mail, Phone, Globe, MessageCircle, Rss } from "lucide-react";
 import Sunburst from "./Sunburst";
 
 export default function Footer() {
@@ -18,8 +19,8 @@ export default function Footer() {
                 Your gift is light for someone in the dark.
               </p>
               <p className="mt-2 max-w-xl font-body text-sm text-cream/85 sm:text-base">
-                UGX 50,000 feeds an orphan for two weeks. UGX 350,000 trains a
-                widow on a sewing machine. UGX 2,000,000 sinks a borehole a
+                $15 feeds an orphan for two weeks. $95 trains a
+                widow on a sewing machine. $550 sinks a borehole a
                 village will use for a generation.
               </p>
             </div>
@@ -38,12 +39,11 @@ export default function Footer() {
           <div className="col-span-2 sm:col-span-1">
             <div className="flex items-center gap-3">
               <span className="relative block h-10 w-10 overflow-hidden rounded-full ring-1 ring-sun/40">
-                <Image
-                  src="/images/logo.jpg"
-                  alt="Musana logo"
-                  fill
-                  className="scale-[1.35] object-cover"
-                />
+                <Image src="/images/logo.jpg" 
+                alt="Musana logo" fill 
+                sizes="40px" 
+                className="scale-[1.35] 
+                object-cover" />
               </span>
               <span className="font-display text-lg font-semibold text-sun">
                 Musana
@@ -83,28 +83,33 @@ export default function Footer() {
               Reach Us
             </p>
             <ul className="mt-4 space-y-2.5 font-body text-sm text-cream/75">
-              <li>Mbale, Eastern Uganda</li>
+              <li className="flex items-center gap-2">
+                <MapPin size={14} className="shrink-0 text-sun/70" aria-hidden="true" />
+                Jinja, Eastern Uganda
+              </li>
               <li>
-                <a href="mailto:info@musanaorg.org" className="transition hover:text-sun">
+                <a href="mailto:info@musanaorg.org" className="flex items-center gap-2 transition hover:text-sun">
+                  <Mail size={14} className="shrink-0 text-sun/70" aria-hidden="true" />
                   info@musanaorg.org
                 </a>
               </li>
               <li>
-                <a href="tel:+256700000000" className="transition hover:text-sun">
-                  +256 700 000 000
+                <a href="tel:+256753605417" className="flex items-center gap-2 transition hover:text-sun">
+                  <Phone size={14} className="shrink-0 text-sun/70" aria-hidden="true" />
+                  +256 753 605 417
                 </a>
               </li>
               <li className="flex gap-3 pt-1 text-cream/50">
-                <a href="#" aria-label="Musana on Facebook" className="transition hover:text-sun">Facebook</a>
-                <a href="#" aria-label="Musana on Instagram" className="transition hover:text-sun">Instagram</a>
-                <a href="#" aria-label="Musana on X" className="transition hover:text-sun">X</a>
+                <a href="#" aria-label="Musana on Facebook" className="transition hover:text-sun"><Globe size={16} /></a>
+                <a href="#" aria-label="Musana on Instagram" className="transition hover:text-sun"><MessageCircle size={16} /></a>
+                <a href="#" aria-label="Musana on X" className="transition hover:text-sun"><Rss size={16} /></a>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-cream/10 pt-6 text-xs text-cream/45 sm:flex-row sm:items-center">
-          <p>&copy; {new Date().getFullYear()} Musana, The Humanitarian Organisation. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Musana Humanitarian Organisation. All rights reserved.</p>
           <p className="font-body italic">&ldquo;Think of giving not as a duty, but as a privilege.&rdquo;</p>
         </div>
       </div>

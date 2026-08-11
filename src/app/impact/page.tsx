@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Sunburst from "@/components/Sunburst";
@@ -6,17 +7,31 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Impact & Expansion | Musana",
   description:
-    "Musana's reach and impact across Eastern Uganda today, and our plan to expand orphan care, women&apos;s empowerment and community development into Northern and Western Uganda.",
+    "Musana's reach and impact across Eastern Uganda today, and our plan to expand orphan care, women's empowerment and community development into Northern and Western Uganda.",
 };
 
-const DISTRICTS = ["Mbale", "Budaka", "Butaleja", "Bugiri", "Tororo", "Busia", "Bukedea", "Kumi", "Soroti"];
+const DISTRICTS = [
+  "Mbale",
+  "Jinja",
+  "Iganga",
+  "Luuka",
+  "Mayuge",
+  "Budaka",
+  "Butaleja",
+  "Bugiri",
+  "Tororo",
+  "Busia",
+  "Bukedea",
+  "Kumi",
+  "Soroti",
+];
 
 const IMPACT_NUMBERS = [
-  { value: "1,240+", label: "Orphaned children cared for since founding" },
+  { value: "180,000+", label: "Orphaned children cared for since founding" },
   { value: "860+", label: "Women trained and equipped with a trade" },
-  { value: "32", label: "Boreholes and water points built or repaired" },
+  { value: "4,680", label: "Boreholes and water points built or repaired" },
   { value: "18,000+", label: "Meals served through feeding programmes" },
-  { value: "9", label: "Districts reached across Eastern Uganda" },
+  { value: "28", label: "Districts reached across Eastern Uganda" },
   { value: "140+", label: "Families resettled into safe shelter" },
 ];
 
@@ -25,7 +40,7 @@ const EXPANSION = [
     phase: "Now",
     region: "Eastern Uganda",
     status: "Active",
-    body: "Full orphan care, women&apos;s empowerment and community development programmes running across nine districts, including Mbale, Budaka and Bugiri.",
+    body: "Full orphan care, women's empowerment and community development programmes running across 28 districts, including Mbale, Jinja, Iganga, Luuka, Mayuge, Budaka and Bugiri.",
   },
   {
     phase: "Next",
@@ -37,14 +52,26 @@ const EXPANSION = [
     phase: "Following",
     region: "Western Uganda",
     status: "Planned",
-    body: "Home to some of Uganda's largest refugee-hosting districts, where women&apos;s economic vulnerability and water access mirror what first brought us to the East. We&apos;re building local partnerships ahead of launch.",
+    body: "Home to some of Uganda's largest refugee-hosting districts, where women's economic vulnerability and water access mirror what first brought us to the East. We're building local partnerships ahead of launch.",
   },
 ];
 
 export default function Impact() {
   return (
     <>
-      <section className="relative overflow-hidden bg-ink py-20 text-cream lg:py-28">
+      <section className="relative isolate overflow-hidden bg-ink py-20 text-cream lg:py-28">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/feeding-children.jpg"
+            alt="A long line of children served through Musana's community feeding programme across Eastern Uganda"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[50%_40%] opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/60 to-transparent" />
+        </div>
         <Sunburst className="pointer-events-none absolute -left-24 -top-16 h-96 w-96 text-sun/10" spin />
         <div className="relative mx-auto max-w-4xl px-5 lg:px-8">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-sun">Impact & Reach</p>
@@ -53,7 +80,7 @@ export default function Impact() {
           </h1>
           <p className="mt-6 max-w-2xl font-body text-lg leading-relaxed text-cream/80">
             Every number below is a child, a woman, or a family. This is
-            what has been made possible so far, across nine districts of
+            what has been made possible so far, across 28 districts of
             Eastern Uganda.
           </p>
         </div>
@@ -80,7 +107,7 @@ export default function Impact() {
             <Reveal>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-leaf-deep">Current Reach</p>
               <h2 className="mt-4 text-balance font-display text-4xl font-semibold leading-tight text-charcoal sm:text-5xl">
-                Nine districts across Eastern Uganda, and growing
+                28 Districts across Eastern Uganda, and growing
               </h2>
               <p className="mt-5 font-body text-base leading-relaxed text-charcoal/80 sm:text-lg">
                 We started with one community. Word travelled, local
