@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Sunburst from "@/components/Sunburst";
 import Reveal from "@/components/Reveal";
+import Carousel from "@/components/Carousel";
 
 const HERO_STATS = [
   { value: "180,000+", label: "Orphans cared for" },
@@ -147,6 +148,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* =========================================================
+          CAROUSEL (OUR PROGRAMS IN ACTION)
+      ========================================================== */}
+      <Carousel 
+        className="w-full" 
+        autoPlay={true} 
+        interval={6000} 
+      />
 
       {/* =========================================================
           WHY IT'S NEEDED
@@ -377,4 +387,3 @@ export default function Home() {
     </>
   );
 }
-
