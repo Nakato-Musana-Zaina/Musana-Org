@@ -37,7 +37,7 @@ const VALUES = [
     icon: Users2,
     title: "Brotherhood",
     body: "No one in our care is a case number. They are family, and family shows up for each other, in good seasons and hard ones, without keeping score.",
-    image: "/images/mho zakah.jpg",
+    image: "/images/mho zakah.jpeg",
     imageAlt: "Women and children gathered together at a Musana skills training session",
   },
 ];
@@ -53,10 +53,10 @@ export default function About() {
             alt="A child drinking clean water from a Musana-built water point in Eastern Uganda"
             fill
             priority
-            className="object-cover object-[70%_30%] opacity-35"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/50" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/60 to-transparent" />
+className="object-cover object-[70%_30%] opacity-70"          />
+
+<div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
+<div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/35 to-transparent" />
         </div>
         <Sunburst className="pointer-events-none absolute -right-24 top-0 h-80 w-80 text-sun/10" spin />
 
@@ -154,8 +154,7 @@ export default function About() {
           return (
             <div
               key={v.title}
-              className="flex min-h-[85vh] items-center border-t border-cream/10 py-14 lg:min-h-screen lg:py-0"
-            >
+className="flex items-center border-t border-cream/10 py-12 lg:py-20"            >
               <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
                 <Reveal className={imageFirst ? "order-2 lg:order-1" : "order-2"}>
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">

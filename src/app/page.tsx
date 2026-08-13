@@ -18,7 +18,7 @@ const PILLARS = [
     body: "Every child who walks through our gate loses the weight of raising themselves. We give orphaned and abandoned children a home, Quran memorisation and Islamic studies, formal schooling, meals, and the steady presence of adults who show up for them every single day.",
     points: [
       "Boarding & day care for orphans",
-      "Qur&apos;an and Islamic studies",
+      "Qur'an and Islamic studies",
       "Formal school sponsorship",
       "Daily meals and healthcare",
     ],
@@ -37,8 +37,7 @@ const PILLARS = [
       "Post-training mentorship",
     ],
     image: "/images/women-sewing.jpg",
-    imageAlt:
-      "A woman taking part in Musana's skills training programme",
+    imageAlt: "A woman taking part in Musana's skills training programme",
   },
   {
     tag: "03",
@@ -71,11 +70,10 @@ export default function Home() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[50%_35%] opacity-70"
+            className="object-cover object-[50%_35%] opacity-90"
           />
-
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/20 to-transparent" />
         </div>
 
         {/* Decorative Sunburst */}
@@ -148,15 +146,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* =========================================================
-          CAROUSEL (OUR PROGRAMS IN ACTION)
-      ========================================================== */}
-      <Carousel 
-        className="w-full" 
-        autoPlay={true} 
-        interval={6000} 
-      />
 
       {/* =========================================================
           WHY IT'S NEEDED
@@ -349,6 +338,18 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          CAROUSEL (OUR PROGRAMS IN ACTION)
+      ========================================================== */}
+      <section id="gallery" className="bg-cream py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <Carousel
+            title="Our Work in Pictures"
+            subtitle="A look at the programmes changing lives across Eastern Uganda, one child, one woman, one village at a time."
+          />
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 // components/Carousel.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -54,6 +54,8 @@ interface CarouselSlide {
 
 interface CarouselProps {
   slides?: CarouselSlide[];
+  title?: string;
+  subtitle?: string;
   autoPlay?: boolean;
   interval?: number;
   showControls?: boolean;
@@ -63,6 +65,8 @@ interface CarouselProps {
 
 export default function Carousel({
   slides = DUMMY_SLIDES,
+  title,
+  subtitle,
   autoPlay = true,
   interval = 5000,
   showControls = true,
@@ -71,10 +75,36 @@ export default function Carousel({
 }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
-  // Get visible slides (3 at a time)
+  const goToSlide = (index: number) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(index);
+    window.setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  const goToPrevious = () => {
+    goToSlide(currentIndex === 0 ? slides.length - 1 : currentIndex - 1);
+  };
+
+  const goToNext = () => {
+    goToSlide(currentIndex === slides.length - 1 ? 0 : currentIndex + 1);
+  };
+
+  useEffect(() => {
+    if (!autoPlay || isPaused) return;
+    const timer = setInterval(goToNext, interval);
+    return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex, autoPlay, interval, isPaused]);
+
+  if (slides.length === 0) return null;
+
+  // Get visible slides (3 at a time on md+, 1 at a time on mobile)
   const getVisibleSlides = () => {
-    const visible = [];
+    const visible: number[] = [];
     for (let i = -1; i <= 1; i++) {
       let index = currentIndex + i;
       if (index < 0) index = slides.length + index;
@@ -84,75 +114,85 @@ export default function Carousel({
     return visible;
   };
 
-  const goToSlide = (index: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
-
-  const goToPrevious = () => {
-    const newIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
-    goToSlide(newIndex);
-  };
-
-  const goToNext = () => {
-    const newIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
-    goToSlide(newIndex);
-  };
-
-  useEffect(() => {
-    if (!autoPlay) return;
-
-    const timer = setInterval(() => {
-      goToNext();
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [currentIndex, autoPlay, interval]);
-
-  if (slides.length === 0) {
-    return null;
-  }
-
   const visibleSlides = getVisibleSlides();
 
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 40) {
+      if (delta > 0) {
+        goToPrevious();
+      } else {
+        goToNext();
+      }
+    }
+    touchStartX.current = null;
+  }
+
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div
+      className={`relative w-full overflow-hidden ${className}`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Slides Container */}
-      <div className="flex items-center justify-center gap-4 px-4 md:gap-6">
+      <div className="flex items-center justify-center gap-3 px-4 sm:gap-4 md:gap-6">
         {visibleSlides.map((slideIndex, position) => {
           const slide = slides[slideIndex];
           const isMiddle = position === 1;
-          
+
           return (
             <div
               key={`${slideIndex}-${position}`}
-              className={`relative transition-all duration-500 ease-in-out ${
-                isMiddle 
-                  ? "w-[60%] md:w-[50%] aspect-[16/9]" 
-                  : "w-[30%] md:w-[25%] aspect-[16/11] opacity-70"
-              } flex-shrink-0 overflow-hidden rounded-2xl shadow-xl`}
+              className={`relative flex-shrink-0 overflow-hidden rounded-2xl shadow-xl transition-all duration-500 ease-in-out ${
+                isMiddle
+                  ? "aspect-[4/3] w-[88%] sm:aspect-[16/10] sm:w-[70%] md:w-[52%]"
+                  : "hidden aspect-[4/5] w-[20%] opacity-60 sm:block md:w-[22%]"
+              }`}
             >
+
+              {(title || subtitle) && (
+        <div className="mx-auto mb-8 max-w-2xl px-4 text-center sm:mb-10">
+          {title && (
+            <h2 className="text-balance font-display text-3xl font-semibold text-charcoal sm:text-4xl">
+              {title}
+            </h2>
+          )}
+          {subtitle && (
+            <p className="mt-3 font-body text-base leading-relaxed text-charcoal/70 sm:text-lg">
+              {subtitle}
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Slides Container */}
               <Image
                 src={slide.image}
                 alt={slide.alt}
                 fill
-                sizes={isMiddle ? "50vw" : "25vw"}
+                sizes={isMiddle ? "(min-width: 768px) 52vw, 88vw" : "22vw"}
                 className="object-cover"
+                priority={isMiddle && position === 1}
               />
-              
-              {/* Overlay with title/description for middle slide only */}
+
+              {/* Overlay with title/description, shown on the middle slide */}
               {isMiddle && (slide.title || slide.description) && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
-                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-7">
                     {slide.title && (
-                      <h3 className="text-lg font-bold text-white md:text-xl lg:text-2xl">
+                      <h3 className="text-balance font-display text-base font-semibold text-cream sm:text-xl md:text-2xl">
                         {slide.title}
                       </h3>
                     )}
                     {slide.description && (
-                      <p className="mt-1 text-xs text-white/90 md:text-sm lg:text-base">
+                      <p className="mt-1 line-clamp-2 max-w-md text-xs text-cream/85 sm:text-sm md:text-base">
                         {slide.description}
                       </p>
                     )}
@@ -169,32 +209,32 @@ export default function Carousel({
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition hover:bg-black/75 md:left-4 md:p-3"
+            className="absolute left-1 top-1/2 -translate-y-1/2 rounded-full bg-ink/60 p-2 text-cream backdrop-blur transition hover:bg-ink/80 sm:left-3 md:left-4 md:p-3"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white transition hover:bg-black/75 md:right-4 md:p-3"
+            className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full bg-ink/60 p-2 text-cream backdrop-blur transition hover:bg-ink/80 sm:right-3 md:right-4 md:p-3"
             aria-label="Next slide"
           >
-            <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
           </button>
         </>
       )}
 
       {/* Indicators */}
       {showIndicators && slides.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 md:bottom-6">
+        <div className="mt-4 flex justify-center gap-2 sm:absolute sm:bottom-4 sm:left-1/2 sm:mt-0 sm:-translate-x-1/2 sm:gap-2 md:bottom-6">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 w-2 rounded-full transition-all duration-300 md:h-2.5 md:w-2.5 ${
+              className={`h-2 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? "w-8 bg-white md:w-10"
-                  : "bg-white/50 hover:bg-white/75"
+                  ? "w-7 bg-leaf sm:w-8 sm:bg-cream md:w-10"
+                  : "w-2 bg-charcoal/25 hover:bg-charcoal/40 sm:bg-cream/50 sm:hover:bg-cream/75"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

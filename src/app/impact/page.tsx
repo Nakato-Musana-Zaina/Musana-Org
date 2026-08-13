@@ -67,10 +67,10 @@ export default function Impact() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[50%_40%] opacity-35"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/60 to-transparent" />
+className="object-cover object-[50%_40%] opacity-65"          />
+
+<div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/30" />
+<div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/35 to-transparent" />
         </div>
         <Sunburst className="pointer-events-none absolute -left-24 -top-16 h-96 w-96 text-sun/10" spin />
         <div className="relative mx-auto max-w-4xl px-5 lg:px-8">

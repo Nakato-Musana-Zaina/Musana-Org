@@ -73,7 +73,7 @@ export default function Header() {
         <div className="hidden lg:block">
           <Link
             href="/contact#donate"
-            className="rounded-full bg-sun px-5 py-2.5 font-body text-sm font-semibold text-ink transition hover:bg-leaf hover:text-cream"
+            className="rounded-full bg-leaf px-5 py-2.5 font-body text-sm font-semibold text-ink transition hover:bg-sun hover:text-cream"
           >
             Donate Now
           </Link>

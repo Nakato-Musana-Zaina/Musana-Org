@@ -19,7 +19,7 @@ const GIVING_TIERS = [
 
 const REACH_US = [
   { icon: MapPin, label: "Office", value: "Mbale, Eastern Uganda" },
-  { icon: Mail, label: "Email", value: "info@musanaorg.org", href: "mailto:info@musanaorg.org" },
+  { icon: Mail, label: "Email", value: "nakatozainamusana@gmail.com", href: "mailto:nakatozainamusana@gmail.com" },
   { icon: Phone, label: "Phone / WhatsApp", value: "+256 753 605 417", href: "tel:+256753605417" },
   { icon: Clock, label: "Office Hours", value: "Monday – Saturday, 8am – 6pm EAT" },
 ];
@@ -36,11 +36,13 @@ export default function Contact() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[50%_25%] opacity-45"
+className="object-cover object-[50%_25%] opacity-70"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/55" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/60 to-transparent" />
+
+<div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
+<div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/35 to-transparent" />
         </div>
+
         <Sunburst className="pointer-events-none absolute -right-24 -top-16 h-80 w-80 text-sun/10" spin />
 
         <div className="relative mx-auto max-w-4xl px-5 py-20 lg:px-8 lg:py-28">

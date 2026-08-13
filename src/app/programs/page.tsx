@@ -130,8 +130,11 @@ export default function Programs() {
                   alt="A Musana graduate tailoring on a Singer sewing machine, surrounded by fellow trainees"
                   fill
                     sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
-                />
+className="object-cover object-[65%_25%] opacity-65"                />
+
+
+<div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/30" />
+<div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/35 to-transparent" />
               </div>
             </div>
             <div className="lg:col-span-6">
