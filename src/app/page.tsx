@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Sunburst from "@/components/Sunburst";
 import Reveal from "@/components/Reveal";
 import Carousel from "@/components/Carousel";
@@ -9,6 +10,21 @@ const HERO_STATS = [
   { value: "860+", label: "Women trained in skills" },
   { value: "4,680", label: "Boreholes built" },
   { value: "28", label: "Districts reached" },
+];
+
+const NEED_STATS = [
+  {
+    value: "1 in 3",
+    label: "children locally affected by orphanhood or abandonment",
+  },
+  {
+    value: "5km+",
+    label: "average walk to clean water in underserved villages",
+  },
+  {
+    value: "70%",
+    label: "of widowed mothers we meet have no stable income",
+  },
 ];
 
 const PILLARS = [
@@ -49,100 +65,161 @@ const PILLARS = [
       "Emergency shelter",
       "Ramadan and relief food drives",
     ],
-    image: "/images/mho bore.jpeg",
+    image: "/images/mho zakah.jpeg",
     imageAlt:
       "Community members benefiting from Musana's community development programme",
   },
 ];
 
+// Centralised button styles
+const BTN_PRIMARY =
+  "rounded-full bg-sun px-8 py-3.5 text-center font-body text-sm font-semibold text-ink transition hover:bg-leaf hover:text-cream sm:text-base";
+const BTN_SECONDARY_DARK =
+  "rounded-full border border-cream/30 px-8 py-3.5 text-center font-body text-sm font-semibold text-cream transition hover:border-sun hover:text-sun sm:text-base";
+const BTN_SECONDARY_LIGHT =
+  "rounded-full border border-charcoal/20 px-9 py-4 font-body text-base font-semibold text-charcoal transition hover:border-leaf hover:text-leaf-deep";
+const BTN_LEAF =
+  "rounded-full bg-leaf px-9 py-4 font-body text-base font-semibold text-cream transition hover:bg-leaf-deep";
+
+const ORG_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  name: "Musana, The Humanitarian Organisation",
+  description:
+    "Musana provides orphan care and education, women's empowerment, and community development (clean water, food, shelter) across Eastern Uganda.",
+  areaServed: {
+    "@type": "Place",
+    name: "Eastern Uganda",
+  },
+  knowsAbout: [
+    "Orphan care",
+    "Education sponsorship",
+    "Women's vocational training",
+    "Borehole drilling",
+    "Community feeding programmes",
+  ],
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSON_LD) }}
+      />
+
       {/* =========================================================
-          HERO
+          HERO - IMPROVED VERSION
       ========================================================== */}
-      <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ink text-cream">
-        {/* Background Image */}
+      <section
+        id="hero"
+        aria-label="Introduction"
+        className="relative isolate flex min-h-[80vh] items-center overflow-hidden bg-ink text-cream sm:min-h-[85vh] lg:min-h-[90vh]"
+      >
+        {/* Background Image with dark overlay for better contrast */}
         <div className="absolute inset-0">
           <Image
-            src="/images/feeding-children.jpg"
+            src="/images/mho disability.jpeg"
             alt="Children from Musana's feeding programme sharing a meal together in Eastern Uganda"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[50%_35%] opacity-90"
+            className="object-cover object-[50%_35%]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/20 to-transparent" />
+          {/* Stronger gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/70 to-ink/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/40 to-transparent" />
+          {/* Additional dark vignette for edges */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.4)_100%)]" />
         </div>
 
-        {/* Decorative Sunburst */}
+        {/* Decorative Sunburst — more subtle */}
         <Sunburst
-          className="pointer-events-none absolute -right-16 top-10 h-64 w-64 text-sun/20 md:h-96 md:w-96"
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-16 top-10 h-64 w-64 text-sun/10 md:h-96 md:w-96"
           spin
         />
 
         {/* Hero Content */}
-        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-5 py-10 sm:py-12 lg:px-8 lg:py-14">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-5 py-12 sm:py-16 lg:px-8 lg:py-20">
           <div className="flex flex-1 flex-col justify-center">
             <div className="max-w-3xl">
-              <p className="animate-rise font-mono text-xs uppercase tracking-[0.25em] text-sun">
-                Eastern Uganda &middot; Est. in community, built on faith
-              </p>
+              {/* Eyebrow with decorative line - improved hierarchy */}
+              <div className="flex items-center gap-4">
+                <div className="h-px flex-1 bg-cream/20" />
+                <p className="flex-shrink-0 font-mono text-xs font-medium uppercase tracking-[0.3em] text-sun motion-safe:animate-rise [animation-delay:80ms]">
+                  Eastern Uganda · Est. in community, built on faith
+                </p>
+                <div className="h-px flex-1 bg-cream/20" />
+              </div>
 
+              {/* Main heading - clear hierarchy with size contrast */}
               <h1
-                className="animate-rise mt-5 text-balance font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
-                style={{ animationDelay: "80ms" }}
-              >
-                Musana means{" "}
-                <span className="text-sun">light from the sun.</span>
-              </h1>
-
-              <p
-                className="animate-rise mt-5 max-w-xl text-balance font-body text-base leading-relaxed text-cream/85 sm:text-lg lg:text-xl"
+                className="motion-safe:animate-rise mt-6 text-balance font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
                 style={{ animationDelay: "160ms" }}
               >
-                For an orphan with no one, a widow with no income, and a village
-                with no clean water, we are trying to be that light. Your gift
-                decides how far it reaches.
+                Musana: Illuminating{" "}
+                <span className="text-sun">lives through faith and action</span>
+              </h1>
+
+              {/* Description with better readability */}
+              <p
+                className="motion-safe:animate-rise mt-5 max-w-xl text-balance font-body text-base leading-relaxed text-cream/90 sm:text-lg lg:text-xl"
+                style={{ animationDelay: "240ms" }}
+              >
+                We put our faith into motion by providing orphaned children with care and education, empowering widowed mothers with trade skills, and giving entire villages access to clean water.
               </p>
 
+              {/* CTAs with improved styling */}
               <div
-                className="animate-rise mt-7 flex flex-col gap-3 sm:flex-row"
-                style={{ animationDelay: "240ms" }}
+                className="motion-safe:animate-rise mt-8 flex flex-col gap-3 sm:flex-row"
+                style={{ animationDelay: "320ms" }}
               >
                 <Link
                   href="/contact#donate"
-                  className="rounded-full bg-sun px-8 py-3.5 text-center font-body text-sm font-semibold text-ink transition hover:bg-leaf hover:text-cream sm:text-base"
+                  data-cta="hero-donate"
+                  className="group inline-flex items-center gap-2 rounded-full bg-sun px-8 py-3.5 text-center font-body text-sm font-semibold text-ink shadow-lg shadow-black/20 transition-all duration-300 hover:scale-[1.03] hover:bg-leaf hover:text-cream sm:text-base"
                 >
-                  Donate Now &rarr;
+                  Donate Now
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
 
                 <Link
                   href="/programs"
-                  className="rounded-full border border-cream/30 px-8 py-3.5 text-center font-body text-sm font-semibold text-cream transition hover:border-sun hover:text-sun sm:text-base"
+                  data-cta="hero-programs"
+                  className="group inline-flex items-center gap-2 rounded-full border border-cream/30 bg-white/5 px-8 py-3.5 text-center font-body text-sm font-semibold text-cream backdrop-blur-sm transition-all duration-300 hover:border-sun hover:bg-white/10 hover:text-sun sm:text-base"
                 >
                   See Our Work
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Hero Statistics */}
-          <div className="relative mt-8">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-cream/15 pt-5 sm:gap-x-8 lg:grid-cols-4 lg:gap-8">
-              {HERO_STATS.map((s) => (
-                <div key={s.label}>
-                  <p className="font-display text-2xl font-semibold text-sun sm:text-3xl lg:text-4xl">
-                    {s.value}
-                  </p>
+          {/* Hero Statistics - improved with better contrast */}
+          <dl className="relative mt-12 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-cream/10 pt-6 sm:gap-x-8 lg:grid-cols-4 lg:gap-8">
+            {HERO_STATS.map((s) => (
+              <div key={s.label}>
+                <dt className="sr-only">{s.label}</dt>
+                <dd className="font-display text-2xl font-bold text-sun sm:text-3xl lg:text-4xl">
+                  {s.value}
+                </dd>
+                <p className="mt-1 max-w-[150px] font-body text-xs leading-relaxed text-cream/70 sm:text-sm">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </dl>
+        </div>
 
-                  <p className="mt-1 max-w-[150px] font-body text-xs leading-relaxed text-cream/70 sm:text-sm">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+        {/* Scroll Cue - minimal and elegant */}
+        <div className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 animate-bounce sm:block">
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-[10px] font-medium uppercase tracking-widest text-cream/30">
+              Scroll
+            </span>
+            <ChevronDown className="h-5 w-5 text-cream/30" strokeWidth={1.5} aria-hidden="true" />
           </div>
         </div>
       </section>
@@ -150,7 +227,7 @@ export default function Home() {
       {/* =========================================================
           WHY IT'S NEEDED
       ========================================================== */}
-      <section className="bg-cream py-20 lg:py-28">
+      <section id="why" aria-label="Why we exist" className="bg-cream py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
           <Reveal>
             <div className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-3xl shadow-xl">
@@ -192,34 +269,19 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-4 border-t border-charcoal/10 pt-6">
-              <div>
-                <p className="font-display text-2xl font-semibold text-leaf-deep">
-                  1 in 3
-                </p>
-                <p className="mt-1 font-body text-xs text-charcoal/60">
-                  children locally affected by orphanhood or abandonment
-                </p>
-              </div>
-
-              <div>
-                <p className="font-display text-2xl font-semibold text-leaf-deep">
-                  5km+
-                </p>
-                <p className="mt-1 font-body text-xs text-charcoal/60">
-                  average walk to clean water in underserved villages
-                </p>
-              </div>
-
-              <div>
-                <p className="font-display text-2xl font-semibold text-leaf-deep">
-                  70%
-                </p>
-                <p className="mt-1 font-body text-xs text-charcoal/60">
-                  of widowed mothers we meet have no stable income
-                </p>
-              </div>
-            </div>
+            <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-charcoal/10 pt-6">
+              {NEED_STATS.map((s) => (
+                <div key={s.label}>
+                  <dt className="sr-only">{s.label}</dt>
+                  <dd className="font-display text-2xl font-semibold text-leaf-deep">
+                    {s.value}
+                  </dd>
+                  <p className="mt-1 font-body text-xs text-charcoal/60">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </dl>
           </Reveal>
         </div>
       </section>
@@ -227,7 +289,7 @@ export default function Home() {
       {/* =========================================================
           WHAT WE DO
       ========================================================== */}
-      <section className="bg-ink py-20 text-cream lg:py-28">
+      <section id="what-we-do" aria-label="What we do" className="bg-ink py-20 text-cream lg:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Reveal className="max-w-2xl">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-sun">
@@ -242,9 +304,9 @@ export default function Home() {
           <div className="mt-14 space-y-20">
             {PILLARS.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
-                <div className="grid gap-8 border-t border-cream/10 pt-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+                <article className="grid gap-8 border-t border-cream/10 pt-10 lg:grid-cols-12 lg:items-center lg:gap-12">
                   {/* Number */}
-                  <div className="lg:col-span-1">
+                  <div className="lg:col-span-1" aria-hidden="true">
                     <span className="font-mono text-sm text-sun/70">
                       {p.tag}
                     </span>
@@ -258,7 +320,7 @@ export default function Home() {
                         alt={p.imageAlt}
                         fill
                         sizes="(max-width: 1024px) 100vw, 42vw"
-                        className="object-cover transition duration-500 hover:scale-105"
+                        className="object-cover transition duration-500 motion-safe:hover:scale-105"
                       />
                     </div>
                   </div>
@@ -276,13 +338,16 @@ export default function Home() {
                     <ul className="mt-5 grid grid-cols-1 gap-y-2 font-body text-sm text-cream/60 sm:grid-cols-2">
                       {p.points.map((pt) => (
                         <li key={pt} className="flex items-start gap-2">
-                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-sun" />
+                          <span
+                            aria-hidden="true"
+                            className="mt-2 h-1 w-1 shrink-0 rounded-full bg-sun"
+                          />
                           {pt}
                         </li>
                       ))}
                     </ul>
                   </div>
-                </div>
+                </article>
               </Reveal>
             ))}
           </div>
@@ -292,8 +357,11 @@ export default function Home() {
       {/* =========================================================
           EXPANSION TEASER
       ========================================================== */}
-      <section className="relative overflow-hidden bg-leaf-pale py-20 lg:py-28">
-        <Sunburst className="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 text-leaf/10" />
+      <section id="expansion-teaser" aria-label="Where we're headed" className="relative overflow-hidden bg-leaf-pale py-20 lg:py-28">
+        <Sunburst
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 text-leaf/10"
+        />
 
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
@@ -331,6 +399,7 @@ export default function Home() {
 
                 <Link
                   href="/impact#expansion"
+                  data-cta="expansion-plan"
                   className="mt-6 inline-block rounded-full bg-sun px-6 py-3 font-body text-sm font-semibold text-ink transition hover:bg-cream"
                 >
                   See The Expansion Plan
@@ -344,7 +413,7 @@ export default function Home() {
       {/* =========================================================
           CAROUSEL (OUR PROGRAMS IN ACTION)
       ========================================================== */}
-      <section id="gallery" className="bg-cream py-20 lg:py-28">
+      <section id="gallery" aria-label="Our work in pictures" className="bg-cream py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <Carousel
             title="Our Work in Pictures"
@@ -356,12 +425,12 @@ export default function Home() {
       {/* =========================================================
           FINAL CTA
       ========================================================== */}
-      <section className="bg-cream py-20 lg:py-28">
+      <section id="final-cta" aria-label="Give today" className="bg-cream py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-5 text-center lg:px-8">
           <Reveal>
-            <p className="font-display text-3xl italic leading-snug text-charcoal sm:text-4xl">
+            <blockquote className="font-display text-3xl italic leading-snug text-charcoal sm:text-4xl">
               &ldquo;Think of giving not as a duty, but as a privilege.&rdquo;
-            </p>
+            </blockquote>
 
             <p className="mt-3 font-body text-sm uppercase tracking-[0.2em] text-charcoal/50">
               Musana, The Humanitarian Organisation
@@ -370,14 +439,16 @@ export default function Home() {
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <Link
                 href="/contact#donate"
-                className="rounded-full bg-leaf px-9 py-4 font-body text-base font-semibold text-cream transition hover:bg-leaf-deep"
+                data-cta="final-donate"
+                className={BTN_LEAF}
               >
                 Give Today
               </Link>
 
               <Link
                 href="/contact#sponsor"
-                className="rounded-full border border-charcoal/20 px-9 py-4 font-body text-base font-semibold text-charcoal transition hover:border-leaf hover:text-leaf-deep"
+                data-cta="final-sponsor"
+                className={BTN_SECONDARY_LIGHT}
               >
                 Sponsor a Child
               </Link>

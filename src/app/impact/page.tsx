@@ -16,14 +16,14 @@ const DISTRICTS = [
   "Iganga",
   "Luuka",
   "Mayuge",
-  "Budaka",
-  "Butaleja",
-  "Bugiri",
-  "Tororo",
-  "Busia",
-  "Bukedea",
-  "Kumi",
-  "Soroti",
+  // "Budaka",
+  // "Butaleja",
+  // "Bugiri",
+  // "Tororo",
+  // "Busia",
+  // "Bukedea",
+  // "Kumi",
+  // "Soroti",
 ];
 
 const IMPACT_NUMBERS = [
@@ -62,7 +62,7 @@ export default function Impact() {
       <section className="relative isolate overflow-hidden bg-ink py-20 text-cream lg:py-28">
         <div className="absolute inset-0">
           <Image
-            src="/images/feeding-children.jpg"
+            src="/images/mho zakah.jpeg"
             alt="A long line of children served through Musana's community feeding programme across Eastern Uganda"
             fill
             priority

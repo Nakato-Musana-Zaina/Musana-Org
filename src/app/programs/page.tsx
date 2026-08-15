@@ -15,15 +15,15 @@ export default function Programs() {
       <section className="relative isolate overflow-hidden bg-ink py-20 text-cream lg:py-24">
         <div className="absolute inset-0">
           <Image
-            src="/images/mho students2.jpeg"
+            src="/images/mho education.jpeg"
             alt="A child drinking clean water from a Musana-built water point, a direct result of Musana's programmes"
             fill
             priority
-  sizes="100vw"
-            className="object-cover object-[65%_25%] opacity-35"
+            sizes="100vw"
+            className="object-cover object-[65%_25%] opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-ink/20 to-transparent" />
         </div>
         <div className="relative mx-auto max-w-4xl px-5 lg:px-8">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-sun">Our Work</p>
@@ -35,6 +35,16 @@ export default function Programs() {
             Uganda needed it first. Here is exactly what your support
             funds.
           </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/contact#donate"
+              data-cta="programs-hero-donate"
+              className="rounded-full bg-sun px-8 py-3.5 text-center font-body text-sm font-semibold text-ink transition hover:bg-leaf hover:text-cream sm:text-base"
+            >
+              Donate Now &rarr;
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -49,11 +49,11 @@ export default function About() {
       <section className="relative isolate overflow-hidden bg-ink text-cream">
         <div className="absolute inset-0">
           <Image
-            src="/images/child-water.jpg"
+            src="/images/mho mosque.jpeg"
             alt="A child drinking clean water from a Musana-built water point in Eastern Uganda"
             fill
             priority
-className="object-cover object-[70%_30%] opacity-70"          />
+className="object-cover object-[70%_30%] opacity-60"          />
 
 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
 <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/35 to-transparent" />
@@ -63,14 +63,9 @@ className="object-cover object-[70%_30%] opacity-70"          />
         <div className="relative mx-auto max-w-4xl px-5 py-24 lg:px-8 lg:py-32">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-sun">Who We Are</p>
           <h1 className="mt-4 text-balance font-display text-5xl font-semibold leading-tight sm:text-6xl">
-            A name that means light, and a promise to be it
-          </h1>
+Where support meets self-reliance.          </h1>
           <p className="mt-6 max-w-2xl font-body text-lg leading-relaxed text-cream/80">
-            Musana is the local word for light from the sun. We chose it
-            because our work is simple to describe: we go to the darkest,
-            most overlooked corners of Eastern Uganda, orphaned children,
-            widowed mothers, villages without water, and we try to be
-            warmth and light there.
+           Musana means sunlight. Across Eastern Uganda, we turn compassion into permanent change—building sustainable water systems, equipping mothers and widows with trade skills, as well as giving vulnerable children a place to thrive.
           </p>
         </div>
       </section>
