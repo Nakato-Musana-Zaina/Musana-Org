@@ -1,6 +1,8 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Sunburst from "@/components/Sunburst";
 import Reveal from "@/components/Reveal";
 import Carousel from "@/components/Carousel";
@@ -39,8 +41,7 @@ const PILLARS = [
       "Daily meals and healthcare",
     ],
     image: "/images/mho education.jpeg",
-    imageAlt:
-      "Children supported through Musana's orphan care and education programme",
+    imageAlt: "Children supported through Musana's orphan care and education programme",
   },
   {
     tag: "02",
@@ -66,8 +67,7 @@ const PILLARS = [
       "Ramadan and relief food drives",
     ],
     image: "/images/mho zakah.jpeg",
-    imageAlt:
-      "Community members benefiting from Musana's community development programme",
+    imageAlt: "Community members benefiting from Musana's community development programme",
   },
 ];
 
@@ -93,10 +93,11 @@ const ORG_JSON_LD = {
   },
   knowsAbout: [
     "Orphan care",
-    "Education sponsorship",
+    "Ramadhan help",
     "Women's vocational training",
     "Borehole drilling",
     "Community feeding programmes",
+    "Moslem Charities",
   ],
 };
 
@@ -110,118 +111,153 @@ export default function Home() {
       />
 
       {/* =========================================================
-          HERO - IMPROVED VERSION
+          HERO - LIGHTER & MORE VIBRANT
       ========================================================== */}
       <section
         id="hero"
         aria-label="Introduction"
-        className="relative isolate flex min-h-[80vh] items-center overflow-hidden bg-ink text-cream sm:min-h-[85vh] lg:min-h-[90vh]"
+        className="relative isolate flex min-h-screen items-center overflow-hidden bg-ink text-cream"
       >
-        {/* Background Image with dark overlay for better contrast */}
-        <div className="absolute inset-0">
+        {/* Background Image with slow zoom animation */}
+        <div className="absolute inset-0 overflow-hidden">
           <Image
             src="/images/mho disability.jpeg"
             alt="Children from Musana's feeding programme sharing a meal together in Eastern Uganda"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[50%_35%]"
+            className="object-cover object-[50%_35%] opacity-90 animate-[kenBurns_25s_ease-in-out_infinite_alternate]"
           />
-          {/* Stronger gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/70 to-ink/30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/40 to-transparent" />
-          {/* Additional dark vignette for edges */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.4)_100%)]" />
+          
+          {/* Much lighter gradient overlays to let the beautiful image shine through */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/60 to-ink/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/50 to-transparent" />
+          
+          {/* Warm vignette to draw focus */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(253,224,71,0.15)_0%,transparent_60%)]" />
         </div>
 
-        {/* Decorative Sunburst — more subtle */}
+        {/* Decorative Sunburst */}
         <Sunburst
           aria-hidden="true"
-          className="pointer-events-none absolute -right-16 top-10 h-64 w-64 text-sun/10 md:h-96 md:w-96"
-          spin
+          className="pointer-events-none absolute -right-20 top-20 h-80 w-80 text-sun/10 md:h-[30rem] md:w-[30rem] animate-[spin_60s_linear_infinite]"
         />
 
-        {/* Hero Content */}
-        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-5 py-12 sm:py-16 lg:px-8 lg:py-20">
-          <div className="flex flex-1 flex-col justify-center">
-            <div className="max-w-3xl">
-              {/* Eyebrow with decorative line - improved hierarchy */}
-              <div className="flex items-center gap-4">
-                <div className="h-px flex-1 bg-cream/20" />
-                <p className="flex-shrink-0 font-mono text-xs font-medium uppercase tracking-[0.3em] text-sun motion-safe:animate-rise [animation-delay:80ms]">
-                  Eastern Uganda · Est. in community, built on faith
-                </p>
-                <div className="h-px flex-1 bg-cream/20" />
-              </div>
+        {/* Main Grid Layout */}
+        <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-5 py-12 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8 lg:py-0">
+          
+          {/* LEFT COLUMN: Text & CTAs */}
+          <div className="flex flex-col justify-center">
+            <h1
+              className="motion-safe:animate-rise mt-5 text-balance font-display text-4xl font-bold leading-[1.1] tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl"
+              style={{ animationDelay: "160ms" }}
+            >
+              Illuminating{" "}
+              <span className="relative inline-block text-sun drop-shadow-md">
+                lives
+                <svg className="absolute -bottom-1 left-0 w-full text-sun/40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
+                </svg>
+              </span>
+              <br className="hidden sm:block" /> through care and community.
+            </h1>
 
-              {/* Main heading - clear hierarchy with size contrast */}
-              <h1
-                className="motion-safe:animate-rise mt-6 text-balance font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
-                style={{ animationDelay: "160ms" }}
+            <p
+              className="motion-safe:animate-rise mt-5 max-w-lg text-balance font-body text-base leading-relaxed text-cream/90 drop-shadow sm:text-lg"
+              style={{ animationDelay: "240ms" }}
+            >
+              We put our faith into motion by providing orphaned children with a safe home and education, empowering widowed mothers with trade skills, and giving entire villages access to clean, life-saving water.
+            </p>
+
+            <div
+              className="motion-safe:animate-rise mt-8 flex flex-col gap-3 sm:flex-row"
+              style={{ animationDelay: "320ms" }}
+            >
+              <Link
+                href="/contact#donate"
+                data-cta="hero-donate"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-sun px-7 py-3.5 text-center font-body text-sm font-bold text-ink shadow-lg shadow-sun/20 transition-all duration-300 hover:scale-[1.03] hover:bg-cream hover:shadow-xl sm:text-base"
               >
-                Musana: Illuminating{" "}
-                <span className="text-sun">lives through faith and action</span>
-              </h1>
+                Donate Now
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
 
-              {/* Description with better readability */}
-              <p
-                className="motion-safe:animate-rise mt-5 max-w-xl text-balance font-body text-base leading-relaxed text-cream/90 sm:text-lg lg:text-xl"
-                style={{ animationDelay: "240ms" }}
+              <Link
+                href="/programs"
+                data-cta="hero-programs"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-cream/40 bg-cream/10 px-7 py-3.5 text-center font-body text-sm font-semibold text-cream backdrop-blur-sm transition-all duration-300 hover:border-sun/60 hover:bg-cream/15 hover:text-sun sm:text-base"
               >
-                We put our faith into motion by providing orphaned children with care and education, empowering widowed mothers with trade skills, and giving entire villages access to clean water.
-              </p>
-
-              {/* CTAs with improved styling */}
-              <div
-                className="motion-safe:animate-rise mt-8 flex flex-col gap-3 sm:flex-row"
-                style={{ animationDelay: "320ms" }}
-              >
-                <Link
-                  href="/contact#donate"
-                  data-cta="hero-donate"
-                  className="group inline-flex items-center gap-2 rounded-full bg-sun px-8 py-3.5 text-center font-body text-sm font-semibold text-ink shadow-lg shadow-black/20 transition-all duration-300 hover:scale-[1.03] hover:bg-leaf hover:text-cream sm:text-base"
-                >
-                  Donate Now
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-
-                <Link
-                  href="/programs"
-                  data-cta="hero-programs"
-                  className="group inline-flex items-center gap-2 rounded-full border border-cream/30 bg-white/5 px-8 py-3.5 text-center font-body text-sm font-semibold text-cream backdrop-blur-sm transition-all duration-300 hover:border-sun hover:bg-white/10 hover:text-sun sm:text-base"
-                >
-                  See Our Work
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </div>
+                See Our Work
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
 
-          {/* Hero Statistics - improved with better contrast */}
-          <dl className="relative mt-12 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-cream/10 pt-6 sm:gap-x-8 lg:grid-cols-4 lg:gap-8">
-            {HERO_STATS.map((s) => (
-              <div key={s.label}>
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="font-display text-2xl font-bold text-sun sm:text-3xl lg:text-4xl">
-                  {s.value}
-                </dd>
-                <p className="mt-1 max-w-[150px] font-body text-xs leading-relaxed text-cream/70 sm:text-sm">
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </dl>
+          {/* RIGHT COLUMN: Statistics Card */}
+          <div 
+            className="motion-safe:animate-rise hidden lg:block" 
+            style={{ animationDelay: "400ms" }}
+          >
+            <div className="relative rounded-3xl border border-cream/10 bg-ink/40 p-8 backdrop-blur-md shadow-2xl shadow-black/20">
+              {/* Decorative glow behind stats */}
+              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-sun/10 blur-3xl" />
+              
+              <dl className="relative grid grid-cols-2 gap-x-8 gap-y-8">
+                {HERO_STATS.map((s, i) => (
+                  <div key={s.label} className="relative">
+                    {/* Vertical divider for right column items */}
+                    {i % 2 === 0 && i < HERO_STATS.length - 1 && (
+                      <div className="absolute right-0 top-1/2 h-12 w-px -translate-y-1/2 bg-cream/10" />
+                    )}
+                    <dt className="sr-only">{s.label}</dt>
+                    <dd className="font-display text-3xl font-bold text-sun lg:text-4xl drop-shadow-sm">
+                      {s.value}
+                    </dd>
+                    <p className="mt-2 font-body text-sm leading-snug text-cream/80">
+                      {s.label}
+                    </p>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+
+          {/* Mobile Stats (Visible only on small screens, stacked below text) */}
+          <div className="lg:hidden">
+            <dl className="grid grid-cols-2 gap-4 rounded-2xl border border-cream/10 bg-ink/40 p-5 backdrop-blur-md">
+              {HERO_STATS.map((s) => (
+                <div key={s.label}>
+                  <dt className="sr-only">{s.label}</dt>
+                  <dd className="font-display text-2xl font-bold text-sun drop-shadow-sm">
+                    {s.value}
+                  </dd>
+                  <p className="mt-1 font-body text-xs text-cream/80">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </dl>
+          </div>
+
         </div>
 
-        {/* Scroll Cue - minimal and elegant */}
-        <div className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 animate-bounce sm:block">
-          <div className="flex flex-col items-center gap-1">
-            <span className="text-[10px] font-medium uppercase tracking-widest text-cream/30">
-              Scroll
-            </span>
-            <ChevronDown className="h-5 w-5 text-cream/30" strokeWidth={1.5} aria-hidden="true" />
+        {/* Scroll Cue - Modern Mouse Wheel Style */}
+        <div className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-cream/50 drop-shadow-sm">
+            Discover More
+          </span>
+          <div className="flex h-10 w-6 items-start justify-center rounded-full border border-cream/30 p-1.5">
+            <div className="h-1.5 w-1.5 animate-[bounce_1.5s_infinite] rounded-full bg-sun" />
           </div>
         </div>
+
+        {/* Custom Keyframes for Ken Burns Effect */}
+        <style jsx>{`
+          @keyframes kenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+          }
+        `}</style>
       </section>
 
       {/* =========================================================
@@ -287,6 +323,18 @@ export default function Home() {
       </section>
 
       {/* =========================================================
+          CAROUSEL (OUR PROGRAMS IN ACTION) - REDUCED PADDING
+      ========================================================== */}
+      <section id="gallery" aria-label="Our work in pictures" className="bg-cream py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <Carousel
+            title="Look at our initiatives and Work"
+            subtitle="A look at the programmes changing lives across Eastern Uganda, one child, one woman, one village at a time."
+          />
+        </div>
+      </section>
+
+      {/* =========================================================
           WHAT WE DO
       ========================================================== */}
       <section id="what-we-do" aria-label="What we do" className="bg-ink py-20 text-cream lg:py-28">
@@ -305,14 +353,12 @@ export default function Home() {
             {PILLARS.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
                 <article className="grid gap-8 border-t border-cream/10 pt-10 lg:grid-cols-12 lg:items-center lg:gap-12">
-                  {/* Number */}
                   <div className="lg:col-span-1" aria-hidden="true">
                     <span className="font-mono text-sm text-sun/70">
                       {p.tag}
                     </span>
                   </div>
 
-                  {/* Image */}
                   <div className="lg:col-span-5">
                     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
                       <Image
@@ -325,7 +371,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="lg:col-span-6">
                     <h3 className="font-display text-2xl font-semibold text-cream sm:text-3xl">
                       {p.title}
@@ -407,18 +452,6 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          CAROUSEL (OUR PROGRAMS IN ACTION)
-      ========================================================== */}
-      <section id="gallery" aria-label="Our work in pictures" className="bg-cream py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <Carousel
-            title="Our Work in Pictures"
-            subtitle="A look at the programmes changing lives across Eastern Uganda, one child, one woman, one village at a time."
-          />
         </div>
       </section>
 

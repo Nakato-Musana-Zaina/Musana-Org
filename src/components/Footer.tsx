@@ -101,8 +101,8 @@ export default function Footer() {
               </li>
               <li className="flex gap-3 pt-1 text-cream/50">
                 <a href="#" aria-label="Musana on Facebook" className="transition hover:text-sun"><Globe size={16} /></a>
-                <a href="#" aria-label="Musana on Instagram" className="transition hover:text-sun"><MessageCircle size={16} /></a>
-                <a href="#" aria-label="Musana on X" className="transition hover:text-sun"><Rss size={16} /></a>
+                <a href="https://www.instagram.com/musana_the_humanitarian_org?utm_source=qr" aria-label="Musana on Instagram" className="transition hover:text-sun"><MessageCircle size={16} /></a>
+                <a href="https://www.threads.com/@musana_the_humanitarian_org?invite=0" aria-label="Musana on X" className="transition hover:text-sun"><Rss size={16} /></a>
               </li>
             </ul>
           </div>

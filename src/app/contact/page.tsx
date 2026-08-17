@@ -31,7 +31,7 @@ export default function Contact() {
       <section className="relative isolate overflow-hidden bg-ink text-cream">
         <div className="absolute inset-0">
           <Image
-            src="/images/mho education.jpeg"
+            src="/images/child-water.jpg"
             alt="A woman trained through Musana's skills programme, one of many people you can help through your gift"
             fill
             priority
