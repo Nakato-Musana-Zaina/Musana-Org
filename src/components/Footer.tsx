@@ -90,7 +90,7 @@ export default function Footer() {
               <li>
                 <a href="mailto:info@musanaorg.org" className="flex items-center gap-2 transition hover:text-sun">
                   <Mail size={14} className="shrink-0 text-sun/70" aria-hidden="true" />
-                  info@musanaorg.org
+                  musanahumanitarianorganization@gmail.com
                 </a>
               </li>
               <li>

@@ -18,8 +18,8 @@ const GIVING_TIERS = [
 ];
 
 const REACH_US = [
-  { icon: MapPin, label: "Office", value: "Mbale, Eastern Uganda" },
-  { icon: Mail, label: "Email", value: "nakatozainamusana@gmail.com", href: "mailto:nakatozainamusana@gmail.com" },
+  { icon: MapPin, label: "Office", value: "Jinja, Eastern Uganda" },
+  { icon: Mail, label: "Email", value: "nakatozainamusana@gmail.com", href: "mailto:musanahumanitarianorganization@gmail.com" },
   { icon: Phone, label: "Phone / WhatsApp", value: "+256 753 605 417", href: "tel:+256753605417" },
   { icon: Clock, label: "Office Hours", value: "Monday – Saturday, 8am – 6pm EAT" },
 ];
