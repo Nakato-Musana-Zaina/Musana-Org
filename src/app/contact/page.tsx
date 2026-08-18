@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const GIVING_TIERS = [
   { amount: "$15", impact: "Feeds an orphan for two weeks" },
-  { amount: "$40", impact: "Covers a child's full month of care and schooling" },
+  { amount: "$50", impact: "Covers a child's full month of care and schooling" },
   { amount: "$95", impact: "Trains and equips one woman with a sewing machine" },
   { amount: "$550", impact: "Sinks a borehole a whole village will use for years" },
 ];
@@ -21,7 +21,7 @@ const REACH_US = [
   { icon: MapPin, label: "Office", value: "Jinja, Eastern Uganda" },
   { icon: Mail, label: "Email", value: "nakatozainamusana@gmail.com", href: "mailto:musanahumanitarianorganization@gmail.com" },
   { icon: Phone, label: "Phone / WhatsApp", value: "+256 753 605 417", href: "tel:+256753605417" },
-  { icon: Clock, label: "Office Hours", value: "Monday – Saturday, 8am – 6pm EAT" },
+  { icon: Clock, label: "Office Hours", value: "Monday - Saturday, 8am - 6pm EAT" },
 ];
 
 export default function Contact() {
@@ -36,11 +36,10 @@ export default function Contact() {
             fill
             priority
             sizes="100vw"
-className="object-cover object-[50%_25%] opacity-70"
+            className="object-cover object-[50%_25%] opacity-70"
           />
-
-<div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
-<div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/35 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/35 to-transparent" />
         </div>
 
         <Sunburst className="pointer-events-none absolute -right-24 -top-16 h-80 w-80 text-sun/10" spin />
@@ -140,16 +139,29 @@ className="object-cover object-[50%_25%] opacity-70"
                 ))}
               </div>
 
+              {/* UPDATED BANK DETAILS SECTION */}
               <div className="mt-8 rounded-2xl bg-ink p-6 text-cream sm:p-7">
-                <p className="font-body text-sm text-cream/70">Bank Transfer & Mobile Money (USD)</p>
+                <p className="font-body text-sm text-cream/70">Bank Transfer & Mobile Money</p>
                 <dl className="mt-3 space-y-1.5 font-mono text-sm text-cream">
                   <div className="flex justify-between gap-4">
-                    <dt className="text-cream/60">Account Name</dt>
-                    <dd>Musana Humanitarian Organisation</dd>
+                    <dt className="text-cream/60">Bank Name</dt>
+                    <dd>I & M Bank Uganda Limited</dd>
                   </div>
                   <div className="flex justify-between gap-4">
-                    <dt className="text-cream/60">Currency</dt>
-                    <dd>USD ($) or EUR (&euro;)</dd>
+                    <dt className="text-cream/60">Account Name</dt>
+                    <dd>Musana the humanitarian organization</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-cream/60">Account Number</dt>
+                    <dd>50755604001</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-cream/60">Swift Code</dt>
+                    <dd>ORINUGKA</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-cream/60">Sort Code</dt>
+                    <dd>110147</dd>
                   </div>
                   <div className="flex justify-between gap-4">
                     <dt className="text-cream/60">Mobile Money / WhatsApp</dt>
